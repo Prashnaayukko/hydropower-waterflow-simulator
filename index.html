@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydropower Flow Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Dashboard -->
+        <aside class="dashboard">
+            <header>
+                <h1>Hydro<span class="highlight">Flow</span></h1>
+                <p>Water Separation Simulator</p>
+            </header>
+
+            <div class="control-panel glass-panel">
+                <h2>Total River Inflow</h2>
+                <div class="slider-container">
+                    <input type="range" id="inflowSlider" min="10" max="1000" value="500" step="10">
+                    <div class="value-display">
+                        <span id="inflowValue">500</span> m&sup3;/s
+                    </div>
+                </div>
+                <p class="description">Adjust the incoming water volume from the reservoir.</p>
+                
+                <h2 style="margin-top: 24px;">Biodiversity Allocation</h2>
+                <div class="slider-container">
+                    <input type="range" id="bioPercentSlider" min="0" max="100" value="10" step="1">
+                    <div class="value-display">
+                        <span id="bioPercentValue">10</span>%
+                    </div>
+                </div>
+                <p class="description">Minimum 10% required by regulation. Can be increased to support ecosystem needs.</p>
+            </div>
+
+            <div class="stats-panel">
+                <div class="stat-card glass-panel power-card">
+                    <div class="stat-icon power-icon">⚡</div>
+                    <div class="stat-info">
+                        <h3>Hydropower Generation</h3>
+                        <div class="stat-value"><span id="powerFlowValue">450</span> m&sup3;/s</div>
+                        <div class="stat-label">90% of total flow</div>
+                    </div>
+                </div>
+
+                <div class="stat-card glass-panel bio-card">
+                    <div class="stat-icon bio-icon">🌿</div>
+                    <div class="stat-info">
+                        <h3>Biodiversity / Env. Flow</h3>
+                        <div class="stat-value"><span id="bioFlowValue">50</span> m&sup3;/s</div>
+                        <div class="stat-label">10% reserved flow</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-panel glass-panel">
+                <h3>Why 10%?</h3>
+                <p>Environmental flows ensure that the downstream river ecosystem remains healthy, protecting aquatic life and biodiversity, while optimizing the rest for clean energy.</p>
+            </div>
+        </aside>
+
+        <!-- Main Visualization Area -->
+        <main class="visualization">
+            <div class="canvas-container">
+                <!-- Background overlay for labels -->
+                <div class="vis-labels">
+                    <div class="label label-inflow">Upstream River Flow</div>
+                    <div class="label label-power">Downstream (Hydropower)</div>
+                    <div class="label label-bio">Downstream (Biodiversity/River)</div>
+                </div>
+                <!-- Alert Banner -->
+                <div id="alertBanner" class="alert-banner hidden">
+                    ⚠️ ALERT: Biodiversity Flow is below 10% minimum threshold!
+                </div>
+                <!-- Sensor -->
+                <div id="bioSensor" class="sensor">
+                    <div class="sensor-icon">📡</div>
+                    <div class="sensor-readout">Monitoring Flow</div>
+                </div>
+                <canvas id="flowCanvas"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
